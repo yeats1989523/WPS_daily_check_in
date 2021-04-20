@@ -32,10 +32,16 @@ def request_re(sid, invite_userid, rep = 35):
 
 for i in invite_userids:
     for j in sids:
-        r = request_re(j, i)
-        js = json.loads(r.content)
-        if js['result'] == 'ok':
-            mk += 1
+        try:
+            
+            r = request_re(j, i)
+            time.sleep(10)
+            js = json.loads(r.content)
+            if js['result'] == 'ok':
+                mk += 1
+        except Exception as e:
+            pass
+        continue
             
 print('成功邀请%d位好友'%(mk))   
 
